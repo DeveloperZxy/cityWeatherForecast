@@ -23,37 +23,37 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `city_weather_info`;
 CREATE TABLE `city_weather_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '城市名称',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '城市名称',
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
-  `fxLink` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '当前数据的响应式页面，便于嵌入网站或应用',
+  `fxLink` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '当前数据的响应式页面，便于嵌入网站或应用',
   `obsTime` datetime NULL DEFAULT NULL COMMENT '数据观测时间',
-  `temp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '温度，默认单位：摄氏度',
-  `feelsLike` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '体感温度，默认单位：摄氏度',
-  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '天气状况的图标代码，另请参考天气图标项目',
-  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '天气状况的文字描述，包括阴晴雨雪等天气状态的描述',
-  `wind360` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '风向360角度',
-  `windDir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '风向',
-  `windScale` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '风力',
+  `temp` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '温度，默认单位：摄氏度',
+  `feelsLike` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '体感温度，默认单位：摄氏度',
+  `icon` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '天气状况的图标代码，另请参考天气图标项目',
+  `text` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '天气状况的文字描述，包括阴晴雨雪等天气状态的描述',
+  `wind360` varchar(255) CHARACTER SET utf8mb4  NOT NULL COMMENT '风向360角度',
+  `windDir` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '风向',
+  `windScale` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '风力',
   `windSpeed` double NULL DEFAULT NULL COMMENT '风速 公里/小时',
-  `humidity` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '相对湿度',
-  `precip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '过去1小时降水量，默认单位：毫米',
-  `pressure` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '大气压强，默认单位：百帕',
-  `vis` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '能见度，默认单位：公里',
+  `humidity` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '相对湿度',
+  `precip` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '过去1小时降水量，默认单位：毫米',
+  `pressure` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '大气压强，默认单位：百帕',
+  `vis` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '能见度，默认单位：公里',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of city_weather_info
@@ -65,22 +65,22 @@ CREATE TABLE `city_weather_info`  (
 DROP TABLE IF EXISTS `cms_article_category`;
 CREATE TABLE `cms_article_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cms_article_category
@@ -103,25 +103,25 @@ INSERT INTO `cms_article_category` VALUES (1901818754368405505, '', NULL, NULL, 
 DROP TABLE IF EXISTS `cms_article_info`;
 CREATE TABLE `cms_article_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `content` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `content` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `author` varchar(100) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1901921331705802754 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1901921331705802754 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cms_article_info
@@ -140,22 +140,22 @@ INSERT INTO `cms_article_info` VALUES (1901921331705802753, '第三次', '的v',
 DROP TABLE IF EXISTS `cms_article_tag_category`;
 CREATE TABLE `cms_article_tag_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cms_article_tag_category
@@ -170,22 +170,22 @@ INSERT INTO `cms_article_tag_category` VALUES (1898632030293303297, '配置1-1',
 DROP TABLE IF EXISTS `cms_article_tag_info`;
 CREATE TABLE `cms_article_tag_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1898636467665608707 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1898636467665608707 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cms_article_tag_info
@@ -201,34 +201,34 @@ INSERT INTO `cms_article_tag_info` VALUES (1898636467665608706, '189862150123121
 DROP TABLE IF EXISTS `crm_user_address_info`;
 CREATE TABLE `crm_user_address_info`  (
   `id` bigint NOT NULL COMMENT '主键 ID',
-  `flag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标识',
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `flag` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '标识',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '编码',
   `status` int NULL DEFAULT 0 COMMENT '状态值: 0: 正常; 1: 默认;',
   `sort` bigint NULL DEFAULT 0 COMMENT '排序值',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '扩展',
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '备注',
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '扩展',
   `created_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `updated_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `user_id` bigint NULL DEFAULT NULL COMMENT '用户ID',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '姓名',
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '手机号',
-  `province_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '省-名称',
-  `province_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '省-编码',
-  `city_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '市-名称',
-  `city_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '市-编码',
-  `district_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '区/镇-名称',
-  `district_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '区/镇-编码',
-  `address_detail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '详细地址',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '姓名',
+  `phone` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '手机号',
+  `province_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '省-名称',
+  `province_code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '省-编码',
+  `city_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '市-名称',
+  `city_code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '市-编码',
+  `district_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '区/镇-名称',
+  `district_code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '区/镇-编码',
+  `address_detail` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '详细地址',
   `deleted_status` tinyint NULL DEFAULT 0,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `category_ids` json NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_address_info
@@ -244,22 +244,22 @@ INSERT INTO `crm_user_address_info` VALUES (4, NULL, NULL, 0, 0, NULL, NULL, NUL
 DROP TABLE IF EXISTS `crm_user_category`;
 CREATE TABLE `crm_user_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_category
@@ -278,25 +278,25 @@ INSERT INTO `crm_user_category` VALUES (1898712033349537793, '外部导入', NUL
 DROP TABLE IF EXISTS `crm_user_city`;
 CREATE TABLE `crm_user_city`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '城市名称',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '城市名称',
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   `warn` json NULL COMMENT '警报',
   `city_id` bigint NULL DEFAULT NULL COMMENT '城市id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_city
@@ -308,25 +308,25 @@ CREATE TABLE `crm_user_city`  (
 DROP TABLE IF EXISTS `crm_user_city_care`;
 CREATE TABLE `crm_user_city_care`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '城市名称',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '城市名称',
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   `city_id` bigint NULL DEFAULT NULL COMMENT '城市id',
   `user_id` bigint NULL DEFAULT NULL COMMENT '用户id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_city_care
@@ -338,35 +338,35 @@ CREATE TABLE `crm_user_city_care`  (
 DROP TABLE IF EXISTS `crm_user_info`;
 CREATE TABLE `crm_user_info`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `user_grade` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `is_group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `is_vip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `balance` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `recommender` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `user_grade` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `is_group` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `is_vip` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `balance` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `recommender` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `id_number` varbinary(255) NULL DEFAULT NULL,
-  `sex` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sex` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `birthday` datetime NULL DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `roles` json NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1904826326545473538 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1904826326545473538 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_info
@@ -382,22 +382,22 @@ INSERT INTO `crm_user_info` VALUES (1904826326545473537, '1898711903900733442', 
 DROP TABLE IF EXISTS `crm_user_tag_category`;
 CREATE TABLE `crm_user_tag_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_tag_category
@@ -414,22 +414,22 @@ INSERT INTO `crm_user_tag_category` VALUES (1901874295375622146, '配置2', NULL
 DROP TABLE IF EXISTS `crm_user_tag_info`;
 CREATE TABLE `crm_user_tag_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1901874350140649475 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1901874350140649475 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of crm_user_tag_info
@@ -443,21 +443,21 @@ INSERT INTO `crm_user_tag_info` VALUES (1901874131055374337, '190187404303790489
 DROP TABLE IF EXISTS `demo`;
 CREATE TABLE `demo`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of demo
@@ -469,27 +469,27 @@ CREATE TABLE `demo`  (
 DROP TABLE IF EXISTS `info_admin_info`;
 CREATE TABLE `info_admin_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '手机号',
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '密码',
-  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '岗位',
-  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '角色',
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录名',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '手机号',
+  `password` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '密码',
+  `position` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '岗位',
+  `role` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '角色',
+  `username` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '登录名',
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1904506038205210626 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1904506038205210626 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of info_admin_info
@@ -506,22 +506,22 @@ INSERT INTO `info_admin_info` VALUES (1900388714095259649, '1898621501231218690'
 DROP TABLE IF EXISTS `info_org_info`;
 CREATE TABLE `info_org_info`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of info_org_info
@@ -536,24 +536,24 @@ INSERT INTO `info_org_info` VALUES (1898632030293303297, '配置1-1', NULL, NULL
 DROP TABLE IF EXISTS `product_brand`;
 CREATE TABLE `product_brand`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
-  `use_num` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `use_num` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1904779143620284419 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1904779143620284419 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_brand
@@ -573,24 +573,24 @@ INSERT INTO `product_brand` VALUES (1904779143620284418, '-1', NULL, '2025-03-11
 DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE `product_category`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
-  `use_num` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `use_num` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1899368555754803204 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1899368555754803204 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_category
@@ -610,30 +610,30 @@ INSERT INTO `product_category` VALUES (1899368555754803203, '-1', NULL, '2025-03
 DROP TABLE IF EXISTS `product_comment`;
 CREATE TABLE `product_comment`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
-  `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '评分',
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名称',
-  `reviews` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '商品评价',
-  `service_attitude` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '服务态度',
-  `logistics_service` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '物流服务',
-  `evaluation_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '评价内容',
-  `quality` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '商品质量',
+  `mark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '评分',
+  `username` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '用户名称',
+  `reviews` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '商品评价',
+  `service_attitude` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '服务态度',
+  `logistics_service` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '物流服务',
+  `evaluation_content` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '评价内容',
+  `quality` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '商品质量',
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1899455940723200002 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_comment
@@ -647,24 +647,24 @@ INSERT INTO `product_comment` VALUES (1899455940723200001, NULL, '', '2025-03-11
 DROP TABLE IF EXISTS `product_spec`;
 CREATE TABLE `product_spec`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
   `attrs` json NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1899457048698933251 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1899457048698933251 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_spec
@@ -680,22 +680,22 @@ INSERT INTO `product_spec` VALUES (1899457048698933250, NULL, '', '2025-03-11 21
 DROP TABLE IF EXISTS `product_tag_category`;
 CREATE TABLE `product_tag_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_tag_category
@@ -710,26 +710,26 @@ INSERT INTO `product_tag_category` VALUES (1898632030293303297, '配置1-1', NUL
 DROP TABLE IF EXISTS `product_tag_info`;
 CREATE TABLE `product_tag_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `border_color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '边框颜色',
-  `bg_color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '背景颜色',
-  `font_color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '字体颜色',
-  `mobile_show` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '移动端展示',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `border_color` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '边框颜色',
+  `bg_color` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '背景颜色',
+  `font_color` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '字体颜色',
+  `mobile_show` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '移动端展示',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1904532800859500546 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1904532800859500546 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_tag_info
@@ -746,28 +746,28 @@ INSERT INTO `product_tag_info` VALUES (1904532800859500545, '1898632030293303297
 DROP TABLE IF EXISTS `shop_cart_info`;
 CREATE TABLE `shop_cart_info`  (
   `id` bigint NOT NULL COMMENT '主键 ID',
-  `flag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标识',
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `flag` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '标识',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '编码',
   `status` int NULL DEFAULT 0 COMMENT '状态值: 0: 禁用; 1: 启用;',
   `sort` bigint NULL DEFAULT 0 COMMENT '排序值',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '扩展',
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '备注',
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '扩展',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `user_id` bigint NULL DEFAULT NULL COMMENT '用户ID',
   `product_id` bigint NULL DEFAULT NULL COMMENT '产品ID',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '封面',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '名称',
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '描述',
+  `image` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '封面',
   `price` decimal(10, 2) NULL DEFAULT 0.00 COMMENT '价格',
   `num` int NULL DEFAULT NULL COMMENT '数量',
   `type` tinyint NULL DEFAULT NULL COMMENT '类别：0:临时；1：正常',
   `deleted_status` tinyint NULL DEFAULT 0 COMMENT '逻辑删除状态：0逻辑未删除值;1:逻辑已删除值',
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `category_ids` json NULL,
-  `product_details_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `product_details_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop_cart_info
@@ -783,12 +783,12 @@ INSERT INTO `shop_cart_info` VALUES (1906644875832365057, NULL, NULL, 0, 0, NULL
 DROP TABLE IF EXISTS `shop_order_details`;
 CREATE TABLE `shop_order_details`  (
   `id` bigint NOT NULL COMMENT '主键 ID',
-  `flag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标识',
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `flag` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '标识',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '编码',
   `status` int NULL DEFAULT 0 COMMENT '状态值: 0: 禁用; 1: 启用;',
   `sort` bigint NULL DEFAULT 0 COMMENT '排序值',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '扩展',
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '备注',
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '扩展',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `deleted_status` tinyint NULL DEFAULT 0 COMMENT '逻辑删除状态：0逻辑未删除值;1:逻辑已删除值',
@@ -796,9 +796,9 @@ CREATE TABLE `shop_order_details`  (
   `user_id` bigint NULL DEFAULT NULL COMMENT '用户ID',
   `product_id` bigint NULL DEFAULT NULL COMMENT '产品ID',
   `product_details_id` bigint NULL DEFAULT NULL COMMENT '产品明细ID',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
-  `spec_flags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '规格标识',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '名称',
+  `image` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
+  `spec_flags` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '规格标识',
   `specs` json NULL COMMENT '规格',
   `num` int NULL DEFAULT NULL COMMENT '数量',
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '价格',
@@ -806,12 +806,12 @@ CREATE TABLE `shop_order_details`  (
   `weight` decimal(10, 2) NULL DEFAULT NULL COMMENT '重量',
   `volume` decimal(10, 2) NULL DEFAULT NULL COMMENT '体积',
   `integral` int NULL DEFAULT NULL COMMENT '积分',
-  `reply_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '评价状态，0-未评价，1-已评价',
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `reply_status` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '评价状态，0-未评价，1-已评价',
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `category_ids` json NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop_order_details
@@ -823,64 +823,64 @@ CREATE TABLE `shop_order_details`  (
 DROP TABLE IF EXISTS `shop_order_info`;
 CREATE TABLE `shop_order_info`  (
   `id` bigint NOT NULL COMMENT '主键 ID',
-  `flag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标识',
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `flag` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '标识',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '编码',
   `status` int NULL DEFAULT 0 COMMENT '状态值:状态	订单状态（0->待发货；1->待收货|已发货；2->已收货|待评价；3->已完成）9:已取消',
   `sort` bigint NULL DEFAULT 0 COMMENT '排序值',
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '扩展',
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '扩展',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `deleted_status` tinyint NULL DEFAULT 0 COMMENT '逻辑删除状态：0逻辑未删除值;1:逻辑已删除值',
   `user_id` bigint NULL DEFAULT NULL COMMENT '用户ID',
-  `receiver_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '收货姓名',
-  `receiver_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '收货电话',
-  `receiver_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '收货详细地址',
-  `delivery_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '发货类型：配送方式 1=快递 ，2=门店自提，0：无需配送',
-  `delivery_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '快递公司编码或门店id(type=1:快递公司编码|type=2:门店id)',
-  `delivery_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '快递名称/送货人姓名 (type=1:快递名称|type=2:送货人姓名)',
-  `delivery_num` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '快递单号/手机号 (type=1:快递单号|type=2:手机号)',
-  `delivery_uid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '配送员id（仅type=2时有效）',
-  `delivery_mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '快递备注/配送备注',
+  `receiver_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '收货姓名',
+  `receiver_phone` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '收货电话',
+  `receiver_address` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '收货详细地址',
+  `delivery_type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '发货类型：配送方式 1=快递 ，2=门店自提，0：无需配送',
+  `delivery_code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '快递公司编码或门店id(type=1:快递公司编码|type=2:门店id)',
+  `delivery_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '快递名称/送货人姓名 (type=1:快递名称|type=2:送货人姓名)',
+  `delivery_num` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '快递单号/手机号 (type=1:快递单号|type=2:手机号)',
+  `delivery_uid` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '配送员id（仅type=2时有效）',
+  `delivery_mark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '快递备注/配送备注',
   `delivery_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '运费金额：商家发快递或物流的真实价格  快递价格 （仅type=1时有效）',
   `goods_num` int NULL DEFAULT NULL COMMENT '订单总数',
   `integral_promotion_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '积分抵扣金额',
-  `integral_use` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '使用了多少积分',
-  `integral_get` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '消费赚取积分',
-  `integral_back` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '给用户退了多少积分（integral_back=integral_get-integral_use）',
+  `integral_use` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '使用了多少积分',
+  `integral_get` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '消费赚取积分',
+  `integral_back` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '给用户退了多少积分（integral_back=integral_get-integral_use）',
   `coupon_promotion_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '优惠劵金额/优惠金额',
   `coupon_id` bigint NULL DEFAULT NULL COMMENT '优惠券ID',
   `coupon_user_id` bigint NULL DEFAULT NULL COMMENT '用户优惠券ID',
   `coupon_data` json NULL COMMENT '优惠券数据',
-  `pay_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '支付状态：0：未支付；1：已支付',
+  `pay_status` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '支付状态：0：未支付；1：已支付',
   `pay_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '实际支付（总支付，支付接口回调实际支付的价格）（正常情况下应该包含支付商品跟支付邮费）',
   `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
-  `pay_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '支付方式：wxpay:微信支付;alipay:支付宝;balance:余额支付;offline:线下支付;（abchina:农业银行;boc:中国银行;ccb:中国建设银行;icbc:中国工商银行）暂时无用',
+  `pay_type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '支付方式：wxpay:微信支付;alipay:支付宝;balance:余额支付;offline:线下支付;（abchina:农业银行;boc:中国银行;ccb:中国建设银行;icbc:中国工商银行）暂时无用',
   `pay_trade_id` int NULL DEFAULT NULL COMMENT '支付流水号(交易号)',
-  `pay_mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '支付备注',
-  `refund_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '0 未退款 1 申请中 2 已退款',
-  `refund_reason_wap_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '前台退款图片',
-  `refund_reason_wap_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '前台退款用户说明',
-  `refund_reason_wap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '前台退款原因',
-  `refund_reason_refuse` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '不退款的理由',
+  `pay_mark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '支付备注',
+  `refund_status` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '0 未退款 1 申请中 2 已退款',
+  `refund_reason_wap_img` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '前台退款图片',
+  `refund_reason_wap_desc` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '前台退款用户说明',
+  `refund_reason_wap` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '前台退款原因',
+  `refund_reason_refuse` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '不退款的理由',
   `refund_reason_time` datetime NULL DEFAULT NULL COMMENT '退款时间',
   `refund_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '退款金额',
   `promotion_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '优惠金额',
-  `vip_promotion_amount` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '会员优惠金额',
+  `vip_promotion_amount` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '会员优惠金额',
   `vip_id` bigint NULL DEFAULT NULL COMMENT '会员卡ID',
   `vip_data` json NULL COMMENT '会员卡i信息',
   `goods_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '商品金额',
   `receivable_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '应收金额/应付金额',
   `total_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '总价',
-  `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '商家备注',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `mark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '商家备注',
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `category_ids` json NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop_order_info
@@ -894,33 +894,33 @@ INSERT INTO `shop_order_info` VALUES (1906684023825928193, NULL, NULL, 0, 0, NUL
 DROP TABLE IF EXISTS `shop_product_details`;
 CREATE TABLE `shop_product_details`  (
   `id` bigint NOT NULL COMMENT '主键 ID',
-  `flag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标识',
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `flag` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '标识',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '编码',
   `status` int NULL DEFAULT 0 COMMENT '状态值: 0: 禁用; 1: 启用;',
   `sort` bigint NULL DEFAULT 0 COMMENT '排序值',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '扩展',
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '备注',
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '扩展',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `product_id` bigint NULL DEFAULT NULL COMMENT '产品ID',
   `specs` json NULL COMMENT '规格',
-  `spec_flags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '规格标识',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '类型:number:数字;string:字符串;bool:布尔值;double:浮点数;array:数组(用英文逗号分隔的字符串);json：JSON对象',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `spec_flags` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '规格标识',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '名称',
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '描述',
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '类型:number:数字;string:字符串;bool:布尔值;double:浮点数;array:数组(用英文逗号分隔的字符串);json：JSON对象',
+  `image` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `original_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '原价',
   `cost_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '成本价',
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '售价',
-  `bar_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '条形码',
-  `inventory` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '库存',
+  `bar_code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '条形码',
+  `inventory` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '库存',
   `weight` double NULL DEFAULT NULL COMMENT '重量（KG）',
   `volume` double NULL DEFAULT NULL COMMENT '体积(m³)',
   `deleted_status` tinyint NULL DEFAULT 0 COMMENT '逻辑删除状态：0逻辑未删除值;1:逻辑已删除值',
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `category_ids` json NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop_product_details
@@ -932,40 +932,40 @@ CREATE TABLE `shop_product_details`  (
 DROP TABLE IF EXISTS `shop_product_info`;
 CREATE TABLE `shop_product_info`  (
   `id` bigint NOT NULL COMMENT '主键 ID',
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '编码',
   `status` int NULL DEFAULT 0 COMMENT '状态值: 0: 禁用; 1: 启用;',
   `sort` bigint NULL DEFAULT 0 COMMENT '排序值',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '扩展',
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '备注',
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '扩展',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `type` tinyint NULL DEFAULT NULL COMMENT '类型',
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级分类ID',
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '上级分类ID',
   `category_ids` json NULL COMMENT '上级分类ID数组',
   `brand_id` bigint NULL DEFAULT NULL COMMENT '品牌ID',
-  `brand_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '品牌名称',
+  `brand_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '品牌名称',
   `unit_id` bigint NULL DEFAULT NULL COMMENT '单位ID',
-  `unit_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '单位名称',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `unit_name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '单位名称',
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '名称',
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '描述',
+  `image` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `images` json NULL COMMENT '图片集合',
-  `recomend_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '推荐图',
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '内容',
-  `keyword` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '关键词',
+  `recomend_img` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '推荐图',
+  `content` longtext CHARACTER SET utf8mb4  NULL COMMENT '内容',
+  `keyword` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '关键词',
   `tag_ids` json NULL COMMENT '标签',
-  `shelf_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上架状态',
+  `shelf_status` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '上架状态',
   `shelf_time` datetime NULL DEFAULT NULL COMMENT '上架时间',
-  `takedown_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '下架状态',
+  `takedown_status` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '下架状态',
   `takedown_time` datetime NULL DEFAULT NULL COMMENT '下架时间',
-  `spec_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '规格类型',
-  `watchword` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '口令',
+  `spec_type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '规格类型',
+  `watchword` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '口令',
   `services` json NULL COMMENT '服务保障',
   `attrs` json NULL COMMENT '参数',
   `sold_num` int NULL DEFAULT NULL COMMENT '已售数量',
-  `give_integral` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '赠送积分',
+  `give_integral` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '赠送积分',
   `give_coupons` json NULL COMMENT '赠送优惠券',
-  `user_tag_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '关联用户标签',
+  `user_tag_ids` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '关联用户标签',
   `limit_status` tinyint NULL DEFAULT NULL COMMENT '是否限购',
   `limit_type` tinyint NULL DEFAULT NULL COMMENT '限购类型',
   `limit_num` int NULL DEFAULT NULL COMMENT '限购数量',
@@ -975,8 +975,8 @@ CREATE TABLE `shop_product_info`  (
   `recommend_status` tinyint NULL DEFAULT NULL COMMENT '优品推荐',
   `recommend_product_ids` json NULL COMMENT '选择优品推荐商品',
   `activity_priority` json NULL COMMENT '活动优先级',
-  `delivery_way` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '配送方式',
-  `delivery_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '运费设置',
+  `delivery_way` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '配送方式',
+  `delivery_type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '运费设置',
   `delivery_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '运费价格',
   `delivery_tpl_id` int NULL DEFAULT NULL COMMENT '运费模板',
   `price` decimal(10, 2) UNSIGNED ZEROFILL NULL DEFAULT 00000000.00 COMMENT '价格',
@@ -985,7 +985,7 @@ CREATE TABLE `shop_product_info`  (
   `score_num` decimal(10, 2) NULL DEFAULT 5.00 COMMENT '评分',
   `deleted_status` tinyint NULL DEFAULT 0 COMMENT '逻辑删除状态：0逻辑未删除值;1:逻辑已删除值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  COMMENT = '系统-配置-信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop_product_info
@@ -1002,22 +1002,22 @@ INSERT INTO `shop_product_info` VALUES (5, NULL, 0, 0, NULL, NULL, NULL, NULL, N
 DROP TABLE IF EXISTS `system_config_category`;
 CREATE TABLE `system_config_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_config_category
@@ -1033,23 +1033,23 @@ INSERT INTO `system_config_category` VALUES (1901597045182898178, '后台设置'
 DROP TABLE IF EXISTS `system_config_info`;
 CREATE TABLE `system_config_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `value` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `value` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1901594985012101122 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1901594985012101122 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_config_info
@@ -1066,23 +1066,23 @@ INSERT INTO `system_config_info` VALUES (1901594985012101121, '19015936081521213
 DROP TABLE IF EXISTS `system_dict_category`;
 CREATE TABLE `system_dict_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `value` varchar(1255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `value` varchar(1255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_dict_category
@@ -1099,22 +1099,22 @@ INSERT INTO `system_dict_category` VALUES (1904501956392484866, '组织', NULL, 
 DROP TABLE IF EXISTS `system_dict_info`;
 CREATE TABLE `system_dict_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1904504920586772482 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1904504920586772482 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_dict_info
@@ -1136,27 +1136,27 @@ INSERT INTO `system_dict_info` VALUES (1904504920586772481, '1904501956392484866
 DROP TABLE IF EXISTS `system_permission_info`;
 CREATE TABLE `system_permission_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `meta` json NULL,
-  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `redirect` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `component` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `redirect` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1905982966867103747 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1905982966867103747 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_permission_info
@@ -1187,23 +1187,23 @@ INSERT INTO `system_permission_info` VALUES (1905982966867103746, '-1', NULL, '2
 DROP TABLE IF EXISTS `system_role_info`;
 CREATE TABLE `system_role_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL COMMENT '图片',
   `category_ids` json NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1905614681721946115 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1905614681721946115 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_role_info
@@ -1217,22 +1217,22 @@ INSERT INTO `system_role_info` VALUES (1905255465828089858, NULL, '', '2025-03-2
 DROP TABLE IF EXISTS `system_sms_tpl_category`;
 CREATE TABLE `system_sms_tpl_category`  (
   `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(1025) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(1025) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `parent_ids` json NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_sms_tpl_category
@@ -1246,22 +1246,22 @@ INSERT INTO `system_sms_tpl_category` VALUES (1898621501231218690, '配置1', NU
 DROP TABLE IF EXISTS `system_sms_tpl_info`;
 CREATE TABLE `system_sms_tpl_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `category_id` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `extend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `image` varchar(2555) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `extend` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `image` varchar(2555) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `deleted_status` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_id`(`category_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1904820549134999555 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1904820549134999555 CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of system_sms_tpl_info
@@ -1275,17 +1275,17 @@ INSERT INTO `system_sms_tpl_info` VALUES (1904820549134999554, NULL, '', '2025-0
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` bigint NOT NULL,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `status` int NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `roles` json NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user

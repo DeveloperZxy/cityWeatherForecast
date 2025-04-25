@@ -3,6 +3,7 @@
     <router-view />
     <ReDialog />
   </el-config-provider>
+
 </template>
 
 <script lang="ts">
@@ -24,3 +25,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style>
+body {
+  background-color: #ffffff;
+}
+</style>

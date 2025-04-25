@@ -11,6 +11,13 @@ import { injectResponsiveStorage } from "@/utils/responsive";
 import Table from "@pureadmin/table";
 // import PureDescriptions from "@pureadmin/descriptions";
 
+
+//引入天气图标库样式文件
+import 'qweather-icons/font/qweather-icons.css'
+
+
+
+
 // 引入重置样式
 import "./style/reset.scss";
 // 导入公共样式
@@ -36,6 +43,21 @@ import {
   IconifyIconOnline,
   FontIcon
 } from "./components/ReIcon";
+
+
+//引入Echart
+import ECharts from 'vue-echarts';
+import * as echarts from 'echarts';
+
+app.component('e-charts', ECharts);
+app.config.globalProperties.$echarts = echarts;
+
+
+
+
+
+
+
 app.component("IconifyIconOffline", IconifyIconOffline);
 app.component("IconifyIconOnline", IconifyIconOnline);
 app.component("FontIcon", FontIcon);
@@ -63,6 +85,11 @@ app.component("AdminInfo", AdminInfo);
 import SystemDictSelect from "@/components/Me/SystemDictSelect.vue";
 app.component("SystemDictSelect", SystemDictSelect);
 // 全局注册vue-tippy
+
+
+
+
+
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import VueTippy from "vue-tippy";
