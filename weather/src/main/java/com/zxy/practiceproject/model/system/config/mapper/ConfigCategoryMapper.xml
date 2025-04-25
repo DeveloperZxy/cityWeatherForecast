@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zxy.practiceproject.model.system.config.mapper.ConfigCategoryMapper">
+
+    <select id="pageQuery" resultType="com.zxy.practiceproject.model.system.config.pojo.dto.PageConfigCategoryDTO">
+        SELECT *
+        FROM system_config_category
+        <where>
+            <if test="filters!=null">
+                <if test="filters.name != null and filters.name != ''">
+                    AND system_config_category.name like concat('%',#{filters.name},'%')
+                </if>
+                <if test="filters.description != null and filters.description != ''">
+                    AND system_config_category.description like concat('%',#{filters.description},'%')
+                </if>
+                <if test="filters.creationTimeStart != null">
+                    and article.create_time <![CDATA[>=]]> #{filters.creationTimeStart}
+                </if>
+                <if test="filters.creationTimeEnd != null ">
+                    and article.create_time <![CDATA[<=]]> #{filters.creationTimeEnd}
+                </if>
+                <if test="filters.status != null and filters.status != ''">
+                    AND article.status= #{filters.status}
+                </if>
+                <if test="filters.code != null and filters.code != ''">
+                    AND article.code LIKE CONCAT('%', #{filters.code}, '%')
+                </if>
+            </if>
+            AND system_config_category.deleted_status =0
+        </where>
+    </select>
+    <select id="listQuery" resultType="com.zxy.practiceproject.model.system.config.pojo.entity.ConfigCategoryEntity"
+            parameterType="com.zxy.practiceproject.model.system.config.pojo.dto.QueryConfigCategoryDTO">
+        SELECT *
+        FROM system_config_category
+        <where>
+            <if test="filters!=null">
+                <if test="filters.name != null and filters.name != ''">
+                    AND system_config_category.name like concat('%',#{filters.name},'%')
+                </if>
+
+                <!--                <if test="filters.includeRoot != null and filters.includeRoot == '1'">-->
+                <!--                    AND system_config_category.id != '0'-->
+                <!--                </if>-->
+                <!--                <if test="filters.parentId != null and filters.parentId != ''">-->
+                <!--                    and JSON_CONTAINS(system_config_category.parent_ids,json_array(#{filters.parentId}))-->
+                <!--                </if>-->
+                <!--                <if test="filters.keyword != null and filters.keyword != ''">-->
+                <!--                    AND (-->
+                <!--                    system_config_category.name like concat("%", #{filters.keyword}, "%")-->
+                <!--                    )-->
+                <!--                </if>-->
+
+            </if>
+            AND system_config_category.deleted_status =0
+        </where>
+    </select>
+    <select id="listChildrenIdsAndSelf" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT id
+        FROM system_config_category
+        <where>
+            JSON_CONTAINS(parent_ids, json_array(#{id}))
+            AND system_config_category.deleted_status =0
+        </where> 
+           OR id = #{id}
+    </select>
+
+</mapper>

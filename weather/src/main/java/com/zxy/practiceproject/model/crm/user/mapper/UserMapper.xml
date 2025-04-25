@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxy.practiceproject.model.crm.user.mapper.UserMapper">
+
+    <select id="pageQuery" resultType="com.zxy.practiceproject.model.crm.user.pojo.dto.PageUserDTO">
+        SELECT *
+        FROM crm_user_info
+        <where>
+            <if test="filters!=null ">
+<!--                <if test="filters.categoryId != null and filters.categoryId != ''">-->
+<!--                    AND crm_user_info.category_id= #{filters.categoryId}-->
+<!--                </if>-->
+                <if test="filters.categoryIds != null and filters.categoryIds.size > 0">
+                    and crm_user_info.category_id in
+                    <foreach collection="filters.categoryIds" item="item" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </if>
+                <if test="filters.keyword != null and filters.keyword != ''">
+                    AND crm_user_info.name LIKE CONCAT('%', #{filters.keyword}, '%')
+                </if>
+                <if test="filters.name != null and filters.name != ''">
+                    AND crm_user_info.name LIKE CONCAT('%', #{filters.name}, '%')
+                </if>
+
+
+                <!--                <if test="filters.createdTime!=null">-->
+                <!--                    <foreach collection="filters.createdTime" item="item" separator="or">-->
+                <!--                        AND crm_user_info.create_time BETWEEN #{item[0]} AND #{item[1]}-->
+                <!--                    </foreach>-->
+                <!--                </if>-->
+
+                <!--                <if test="filters.creationTimeStart != null and filters.creationTimeEnd != null">-->
+                <!--                    AND crm_user_info.create_time BETWEEN #{filters.creationTimeStart} AND #{filters.creationTimeEnd}-->
+                <!--                </if>-->
+
+<!--                <if test="filters.creationTimeStart != null">-->
+<!--                    and crm_user_info.create_time <![CDATA[>=]]> #{filters.creationTimeStart}-->
+<!--                </if>-->
+<!--                <if test="filters.creationTimeEnd != null ">-->
+<!--                    and crm_user_info.create_time <![CDATA[<=]]> #{filters.creationTimeEnd}-->
+<!--                </if>-->
+                <if test="filters.status != null and filters.status !=''">
+                    AND crm_user_info.status= #{filters.status}
+                </if>
+                <if test="filters.code != null and filters.code != ''">
+                    AND crm_user_info.code LIKE CONCAT('%', #{filters.code}, '%')
+                </if>
+                <if test="filters.createdTime != null and filters.createdTime.length > 0">
+                    and crm_user_info.create_time >= DATE_FORMAT(#{filters.createdTime[0]}, '%Y-%m-%d 00:00:00')
+                </if>
+                <if test="filters.createdTime != null and filters.createdTime.length > 1">
+                    and DATE_FORMAT(#{filters.createdTime[1]}, '%Y-%m-%d 23:59:59') >= crm_user_info.create_time
+                </if>
+<!--                <if test="filters.sort != null and filters.sort != ''">-->
+<!--                    AND crm_user_info.sort LIKE CONCAT('%', #{filters.sort}, '%')-->
+<!--                </if>-->
+<!--                <if test="filters.type != null and filters.type !=''">-->
+<!--                    AND crm_user_info.type= #{filters.type}-->
+<!--                </if>-->
+<!--                <if test="filters.extend!= null and filters.extend !=''">-->
+<!--                    AND crm_user_info.extend= #{filters.extend}-->
+<!--                </if>-->
+            </if>
+            AND crm_user_info.deleted_status =0
+        </where>
+    </select>
+
+</mapper>

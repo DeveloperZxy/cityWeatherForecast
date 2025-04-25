@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxy.practiceproject.model.product.productSpec.mapper.ProductSpecMapper">
+
+    <resultMap id="pageQueryResultMap" type="com.zxy.practiceproject.model.product.productSpec.pojo.dto.PageProductSpecDTO">
+        <result property="categoryIds" column="category_ids" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="attrs" column="attrs" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+    </resultMap>
+
+    <select id="pageQuery"
+            resultMap="pageQueryResultMap" resultType="com.zxy.practiceproject.model.product.productSpec.pojo.dto.PageProductSpecDTO">
+        SELECT *
+        FROM product_spec
+        <where>
+            <if test="filters!=null">
+<!--                <if test="filters.categoryId != null and filters.categoryId != ''">-->
+<!--                    AND product_spec.category_id= #{filters.categoryId}-->
+<!--                </if>-->
+                <if test="filters.categoryIds != null and filters.categoryIds.size > 0">
+                    and product_spec.category_id in
+                    <foreach collection="filters.categoryIds" item="item" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </if>
+                <if test="filters.keyword != null and filters.keyword != ''">
+                    AND product_spec.name LIKE CONCAT('%', #{filters.keyword}, '%')
+                </if>
+                <if test="filters.name != null and filters.name != ''">
+                    AND product_spec.name LIKE CONCAT('%', #{filters.name}, '%')
+                </if>
+
+
+                <!--                <if test="filters.createdTime!=null">-->
+                <!--                    <foreach collection="filters.createdTime" item="item" separator="or">-->
+                <!--                        AND product_spec.create_time BETWEEN #{item[0]} AND #{item[1]}-->
+                <!--                    </foreach>-->
+                <!--                </if>-->
+
+                <!--                <if test="filters.creationTimeStart != null and filters.creationTimeEnd != null">-->
+                <!--                    AND product_spec.create_time BETWEEN #{filters.creationTimeStart} AND #{filters.creationTimeEnd}-->
+                <!--                </if>-->
+
+<!--                <if test="filters.creationTimeStart != null">-->
+<!--                    and product_spec.create_time <![CDATA[>=]]> #{filters.creationTimeStart}-->
+<!--                </if>-->
+<!--                <if test="filters.creationTimeEnd != null ">-->
+<!--                    and product_spec.create_time <![CDATA[<=]]> #{filters.creationTimeEnd}-->
+<!--                </if>-->
+                <if test="filters.status != null and filters.status !=''">
+                    AND product_spec.status= #{filters.status}
+                </if>
+                <if test="filters.code != null and filters.code != ''">
+                    AND product_spec.code LIKE CONCAT('%', #{filters.code}, '%')
+                </if>
+                <if test="filters.createdTime != null and filters.createdTime.length > 0">
+                    and product_spec.create_time >= DATE_FORMAT(#{filters.createdTime[0]}, '%Y-%m-%d 00:00:00')
+                </if>
+                <if test="filters.createdTime != null and filters.createdTime.length > 1">
+                    and DATE_FORMAT(#{filters.createdTime[1]}, '%Y-%m-%d 23:59:59') >= product_spec.create_time
+                </if>
+<!--                <if test="filters.sort != null and filters.sort != ''">-->
+<!--                    AND product_spec.sort LIKE CONCAT('%', #{filters.sort}, '%')-->
+<!--                </if>-->
+<!--                <if test="filters.type != null and filters.type !=''">-->
+<!--                    AND product_spec.type= #{filters.type}-->
+<!--                </if>-->
+<!--                <if test="filters.extend!= null and filters.extend !=''">-->
+<!--                    AND product_spec.extend= #{filters.extend}-->
+<!--                </if>-->
+            </if>
+            AND product_spec.deleted_status =0
+        </where>
+    </select>
+    <select id="listChildrenIdsAndSelf" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT id
+        FROM product_spec
+        <where>
+            JSON_CONTAINS(category_ids, json_array(#{id}))
+            AND product_spec.deleted_status =0
+        </where> 
+           OR id = #{id}
+    </select>
+    <select id="listQuery"
+            resultType="com.zxy.practiceproject.model.product.productSpec.pojo.entity.ProductSpecEntity"
+            parameterType="com.zxy.practiceproject.model.product.productSpec.pojo.dto.QueryProductSpecDTO">
+        SELECT *
+        FROM product_spec
+        <where>
+<!--                <if test="filters.categoryId != null and filters.categoryId != ''">-->
+<!--                    AND product_spec.category_id= #{filters.categoryId}-->
+<!--                </if>-->
+                <if test="keyword != null and keyword != ''">
+                    AND product_spec.name LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+            AND product_spec.deleted_status =0
+        </where>
+    </select>
+</mapper>
