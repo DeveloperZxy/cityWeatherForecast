@@ -60,8 +60,8 @@ class PracticeProjectApplicationTests {
         //测试一下城市接口
         CityWeatherAPIController   cityWeatherAPIController = new CityWeatherAPIController();
 //        cityWeatherAPIController.getHotCities();
-//          cityWeatherAPIController.searchCity("北京");
-          cityWeatherAPIController.oneDayWeather("101010100");
+          cityWeatherAPIController.searchCity("北京");
+//          cityWeatherAPIController.oneDayWeather("101010100");
 //          cityWeatherAPIController.sevenDaysWeather("101010100");
 
 //        // 测试一下城市接口
