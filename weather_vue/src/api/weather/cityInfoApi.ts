@@ -1,0 +1,48 @@
+import { http } from "@/utils/http";
+
+let urlPrefix = "/api/admin/weather/cityInfo";
+
+//获取分页
+export const getPageApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/page`, { data });
+};
+
+//增加
+export const getAddApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/add`, { data });
+};
+
+//删除
+export const getDelApi = (id: string) => {
+  return http.request("post", `${urlPrefix}/del`, { data: { id } });
+};
+
+//编辑
+export const getEditApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/edit`, { data });
+};
+//show
+export const getShowApi = (id: string) => {
+  return http.request("post", `${urlPrefix}/show`, { data: { id } });
+};
+
+//获取列表
+export const getListApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/list`, { data });
+};
+
+//设置状态
+export const getSetStatusApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/status`, { data });
+};
+//设置密码
+export const getSetPasswordApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/resetPassword`, { data });
+};
+//设置密码
+export const getHotCitiesApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/hotCities`, { data });
+};
+export const getSearchCityApi = (data?: object) => {
+  return http.request("post", `${urlPrefix}/searchCity`, { data });
+};

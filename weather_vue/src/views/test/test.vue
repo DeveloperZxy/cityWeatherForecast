@@ -1,20 +1,19 @@
 <template>
   <div>
-    roleId ：{{ formData.roleId }} adminId :{{ formData.adminId }}
-    <RoleSelect v-model="formData.roleId" />
-    <AdminSelect v-model="formData.adminId" />
+data:{{data}}
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { ElTree } from "element-plus";
-import type Node from "element-plus/es/components/tree/src/model/node";
-import RoleSelect from "@/components/Me/RoleSelect.vue";
-import AdminSelect from "@/components/Me/AdminSelect.vue";
+import * as cityInfo from "@/api/weather/cityInfoApi"
 
-let formData = ref({
-  roleId: [],
-  adminId: ""
-});
+import {ref} from "vue";
+const data = ref([]);
+const handleCurrentChange = async () => {
+  let res = await cityInfo.getHotCitiesApi({});
+  console.log(res.data);
+  data.value = res.data;
+};
+
+handleCurrentChange();
 </script>

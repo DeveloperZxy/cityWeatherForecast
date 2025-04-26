@@ -29,6 +29,14 @@ export default {
         title: "天气详情",
         showLink: VITE_HIDE_HOME === "true" ? false : true
       }
+    },{
+      path: "/Weather/WeatherCity",
+      name: "WeatherCity",
+      component: () => import("@/views/weather/city/index.vue"),
+      meta: {
+        title: "城市管理",
+        showLink: VITE_HIDE_HOME === "true" ? false : true
+      }
     },
     {
       path: "/Weather/Test",
