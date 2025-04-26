@@ -1,56 +1,53 @@
 <template>
-<div style="width: 100%">
+  <div style="width: 100%">
 
+{{listData}}
+    <el-card>
+      <el-button type="primary" @click="open">添加关注的城市</el-button>
+      <el-button :icon="Refresh"></el-button>
+    </el-card>
 
-  <el-card >
-    <el-button type="primary">添加关注的城市</el-button>
-    <el-button :icon="Refresh"></el-button>
-  </el-card>
+    <div class="wather-card-list">
 
-  <div class="wather-card-list">
+      <div class="wather-card" style="width: 360px;" v-for="(item,index) in 9">
+        <div class="wather-header">
+          <span class="wather-time">2025-04-25 09:26</span>
+        </div>
 
-    <div class="wather-card"  style="width: 360px;"  v-for="(item,index) in 9" >
-      <div class="wather-header">
-        <span class="wather-time">2025-04-25 09:26</span>
-      </div>
-
-      <div class="wather-content">
-        <h3 class="wather-title">金水区</h3>
-        <div class="wather-content-info">
-          <div class="wather-img-wapper">
-            <i class="qi-307 wather-img"></i>
-            <!--            <img class="wather-img" src="https://a.hecdn.net/img/common/icon/202106d/101.png" alt="">-->
+        <div class="wather-content">
+          <h3 class="wather-title">金水区</h3>
+          <div class="wather-content-info">
+            <div class="wather-img-wapper">
+              <i class="qi-307 wather-img"></i>
+              <!--            <img class="wather-img" src="https://a.hecdn.net/img/common/icon/202106d/101.png" alt="">-->
+            </div>
+            <div class="wather-desc">
+              <span class="temperature">20°</span> <span class="value">晴</span>
+            </div>
           </div>
-          <div class="wather-desc">
-            <span class="temperature">20°</span> <span class="value">晴</span>
+
+        </div>
+
+        <div class="wather-msg">
+          今天白天晴，夜晚多云，比昨天热很多，现在21°，空气一般。
+        </div>
+
+        <div class="wather-footer">
+          <div class="wather-desc-item" v-for="(item,index) in 4" :key="index">
+            <span class="wather-desc-item-name">2级</span>
+            <span class="wather-desc-item-value">南风</span>
           </div>
         </div>
 
-      </div>
-
-      <div class="wather-msg">
-        今天白天晴，夜晚多云，比昨天热很多，现在21°，空气一般。
-      </div>
-
-      <div  class="wather-footer">
-        <div class="wather-desc-item" v-for="(item,index) in 4" :key="index">
-          <span class="wather-desc-item-name">2级</span>
-          <span  class="wather-desc-item-value">南风</span>
+        <div class="wather-warning">
+          <img class="wather-warning-img" src="/warning-no-data.png" alt="">
+          <span>暂无预警</span>
         </div>
       </div>
 
-      <div class="wather-warning">
-        <img class="wather-warning-img" src="/warning-no-data.png" alt="">
-        <span>暂无预警</span>
-      </div>
+      <SaveInfoFrom ref="saveInfoRef" @success="updateData"></SaveInfoFrom>
     </div>
-
-
   </div>
-</div>
-
-
-
 
 
 </template>
@@ -60,18 +57,36 @@
 import {
   Refresh,
 } from '@element-plus/icons-vue'
+import {getListApi} from "@/api/weather/cityCareInfoApi";
+import SaveInfoFrom from "@/views/weather/SaveInfoFrom.vue";
+import {ref} from "vue";
+import {storageLocal} from "@/store/utils";
 
+const saveInfoRef = ref();
+const open = () => {
+  saveInfoRef.value.open();
+}
+const listData = ref([]);
+const updateData = async () => {
+  let res = await getListApi({
+    userId: storageLocal().getItem("userId"),
+  });
+  if (res.success) {
+    listData.value = res.data;
+  }
+
+}
+
+updateData();
 </script>
 
 <style scoped lang="scss">
 
-.wather-card-list{
+.wather-card-list {
   display: flex;
   flex-wrap: wrap;
   aitems: center;
 }
-
-
 
 
 .wather-card {
@@ -82,7 +97,7 @@ import {
   padding: 24px 30px;
   position: relative;
 
-  .wather-warning{
+  .wather-warning {
     //border: 1px solid red;
     width: 90px;
     height: 90px;
@@ -103,11 +118,12 @@ import {
   }
 
 
-  .wather-header{
+  .wather-header {
     display: flex;
     justify-content: end;
     aitems: center;
-    .wather-time{
+
+    .wather-time {
       font-size: 14px;
       line-height: 16px;
       font-weight: 300;
@@ -124,11 +140,13 @@ import {
     flex-direction: column;
     justify-content: center;
     aitems: center;
-    .wather-title{
+
+    .wather-title {
       display: flex;
       justify-content: center;
       aitems: center;
     }
+
     .wather-content-info {
       display: flex;
       flex-direction: row;
@@ -136,34 +154,39 @@ import {
       align-items: center;
       font-size: 18px;
       width: 100%;
-      .wather-img-wapper{
+
+      .wather-img-wapper {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 110px;
         height: 110px;
         text-align: center;
-        .wather-img{
+
+        .wather-img {
           width: 100%;
           height: 100%;
           font-size: 72px;
         }
       }
-      .wather-desc{
+
+      .wather-desc {
         margin-left: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         aitems: center;
         font-size: 15px;
-        .temperature{
+
+        .temperature {
           font-size: 40px;
           line-height: 1;
           color: black;
           overflow: hidden;
           text-overflow: ellipsis;
         }
-        .value{
+
+        .value {
           font-size: 22px;
           font-weight: 500;
         }
@@ -171,7 +194,7 @@ import {
     }
   }
 
-  .wather-msg{
+  .wather-msg {
     margin: 26px auto 30px;
     max-width: 514px;
     min-height: 32px;
@@ -181,7 +204,7 @@ import {
     color: black;
   }
 
-  .wather-footer{
+  .wather-footer {
 
 
     height: 84px;
@@ -192,21 +215,24 @@ import {
 
     display: flex;
     flex-direction: row;
-    .wather-desc-item{
+
+    .wather-desc-item {
       flex: 1;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      .wather-desc-item-name{
+
+      .wather-desc-item-name {
         font-size: 18px;
         font-weight: 500;
         line-height: 20px;
         color: black;
         white-space: nowrap;
       }
-      .wather-desc-item-value{
+
+      .wather-desc-item-value {
         margin-top: 7px;
         font-size: 15px;
         font-weight: normal;
@@ -218,13 +244,13 @@ import {
 
   }
 }
+
 .footer-wapper {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
 }
-
 
 
 </style>

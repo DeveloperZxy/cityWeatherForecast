@@ -5,12 +5,12 @@ data:{{data}}
 </template>
 
 <script lang="ts" setup>
-import * as cityInfo from "@/api/weather/cityInfoApi"
+import * as cityInfo from "@/api/weather/cityCareInfoApi"
 
 import {ref} from "vue";
 const data = ref([]);
 const handleCurrentChange = async () => {
-  let res = await cityInfo.getHotCitiesApi({});
+  let res = await cityInfo.getListApi({});
   console.log(res.data);
   data.value = res.data;
 };

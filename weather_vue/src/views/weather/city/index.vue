@@ -24,25 +24,6 @@
           >新增
           </el-button>
         </form>
-        <el-card>
-          <el-form :model="cityData" label-width="80px">
-            <el-form-item label="城市名称">
-              <el-input v-model="cityData.location" placeholder="请输入城市名称"/>
-            </el-form-item>
-            <el-form-item label="和风天气对应城市">
-              <el-select v-model="cityData.locationId" placeholder="请选择">
-                <el-option
-                  v-for="item in cityList"
-                  filterable="true"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                />
-              </el-select>
-            </el-form-item>
-            <el-button @click="handleAddCity(cityData.locationId)">添加城市</el-button>
-          </el-form>
-        </el-card>
       </template>
 
       <template #main-content>
@@ -161,47 +142,6 @@ watch(categoryName, val => {
   treeRef.value!.filter(val);
 });
 
-//监视cityData.location的值，一发生变化，就调用getHotCitiesApi
-watch(
-  () => cityData.location,
-  async () => {
-    try {
-      const res = await userTagInfoApi.getSearchCityApi({name: cityData.location});
-      cityList.value = res.data;
-    } catch (error) {
-      console.error("获取热门城市列表时出错:", error);
-    }
-  }
-);
-
-//添加城市
-const handleAddCity = async (locationId: string) => {
-
-  console.log("locationId", locationId);
-  if (!locationId) {
-    ElMessage.error("请输入城市名称");
-    return;
-  }
-  //从cityList中筛选出id为locationId的数据
-  const city = cityList.value.find(city => city.id === locationId);
-  console.log("city",city);
-  try {
-    const res = await userTagInfoApi.getAddApi({
-      locationId: locationId,
-      name: city?.name,
-      locationData: city,
-    });
-    if (res.success) {
-      ElMessage.success("添加成功");
-      refreshData();
-    } else {
-      //TODO 弹出后台返回的报错信息
-      ElMessage.error("不能重复添加！");
-    }
-  } catch (error) {
-    console.error("添加城市时出错:", error);
-  }
-}
 
 //改变状态status
 const handleStatusChange = async (row: any) => {

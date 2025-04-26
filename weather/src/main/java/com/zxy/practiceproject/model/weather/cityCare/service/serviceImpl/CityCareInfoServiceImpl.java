@@ -1,4 +1,4 @@
-package com.zxy.practiceproject.model.weather.city.service.serviceImpl;
+package com.zxy.practiceproject.model.weather.cityCare.service.serviceImpl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
@@ -17,12 +17,13 @@ import com.zxy.common.result.PageResult;
 import com.zxy.common.utils.JwtUtil;
 import com.zxy.common.utils.TreeUtils;
 import com.zxy.practiceproject.model.user.shop.userShopOrder.pojo.dto.OrderDetailsVO;
-import com.zxy.practiceproject.model.weather.city.mapper.CityInfoMapper;
-import com.zxy.practiceproject.model.weather.city.pojo.dto.PageCityInfoDTO;
-import com.zxy.practiceproject.model.weather.city.pojo.dto.QueryCityInfoDTO;
-import com.zxy.practiceproject.model.weather.city.pojo.dto.CityInfoDTO;
-import com.zxy.practiceproject.model.weather.city.pojo.entity.CityInfoEntity;
-import com.zxy.practiceproject.model.weather.city.service.CityInfoService;
+import com.zxy.practiceproject.model.weather.cityCare.mapper.CityCareInfoMapper;
+import com.zxy.practiceproject.model.weather.cityCare.pojo.dto.CityCareInfoDTO;
+import com.zxy.practiceproject.model.weather.cityCare.pojo.dto.PageCityCareInfoDTO;
+import com.zxy.practiceproject.model.weather.cityCare.pojo.dto.QueryCityCareInfoDTO;
+import com.zxy.practiceproject.model.weather.cityCare.pojo.entity.CityCareInfoEntity;
+import com.zxy.practiceproject.model.weather.cityCare.pojo.entity.DetailsCityCareEntity;
+import com.zxy.practiceproject.model.weather.cityCare.service.CityCareInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEntity> implements CityInfoService {
+public class CityCareInfoServiceImpl extends ServiceImpl<CityCareInfoMapper, CityCareInfoEntity> implements CityCareInfoService {
     @Autowired
-    private CityInfoMapper productTagMapper;
+    private CityCareInfoMapper productTagMapper;
 
 
     /**
@@ -43,12 +44,13 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
      * @return
      */
     @Override
-    public void add(CityInfoDTO cityInfoDTO) {
-        //对 location_id 去重判断，重复的location_id 不允许添加记录
-        if (StrUtil.isNotBlank(cityInfoDTO.getLocationId())) {
-            LambdaQueryWrapper<CityInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.in(CityInfoEntity::getLocationId, cityInfoDTO.getLocationId());
-            List<CityInfoEntity> list = this.list(queryWrapper);
+    public void add(CityCareInfoDTO cityInfoDTO) {
+        cityInfoDTO.setUserId(JwtUtil.getLoginUserId());
+        //根据cityId 进行防止重复添加
+        if (StrUtil.isNotBlank(cityInfoDTO.getCityId())) {
+            LambdaQueryWrapper<CityCareInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.in(CityCareInfoEntity::getCityId, cityInfoDTO.getCityId());
+            List<CityCareInfoEntity> list = this.list(queryWrapper);
             if (CollUtil.isNotEmpty(list)) {
                 throw new RuntimeException("不能重复添加！");
             }
@@ -77,8 +79,8 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
      * @return
      */
     @Override
-    public void edit(CityInfoDTO productTagDTO) {
-        CityInfoEntity productTag = new CityInfoEntity();
+    public void edit(CityCareInfoDTO productTagDTO) {
+        CityCareInfoEntity productTag = new CityCareInfoEntity();
         //对象属性拷贝
         BeanUtils.copyProperties(productTagDTO, productTag);
         //设置更新时间
@@ -88,6 +90,8 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
     }
 
 
+
+
     /**
      * 列表查询
      *
@@ -95,25 +99,36 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
      * @return 包含查询结果的响应体R，其中List<ConfigEntity>为查询结果列表
      */
     @Override
-    public List<CityInfoEntity> listQuery(QueryCityInfoDTO queryConfigDTO) {
-        List<CityInfoEntity> list = productTagMapper.listQuery(queryConfigDTO);
+    public List<CityCareInfoEntity> listQuery(QueryCityCareInfoDTO queryConfigDTO) {
+        queryConfigDTO.setUserId(JwtUtil.getLoginUserId());
+        List<CityCareInfoEntity> list = productTagMapper.listQuery(queryConfigDTO);
         //返回查询结果
+        return list;
+    }
+
+
+
+    @Override
+    public List<DetailsCityCareEntity> listQuery2(QueryCityCareInfoDTO queryConfigDTO) {
+        List<DetailsCityCareEntity> list = productTagMapper.listQueryWithJoin(queryConfigDTO);
+        //
         return list;
     }
 
     /**
      * 分页查询
+     *
      * @param dto
      * @return
      */
 
     @Override
-    public PageResult<PageCityInfoDTO> pageQuery(PageQuery<QueryCityInfoDTO> dto) {
+    public PageResult<PageCityCareInfoDTO> pageQuery(PageQuery<QueryCityCareInfoDTO> dto) {
 
         /**
          * 如果分类是 '0' 全部，则去掉分类查询条件
          */
-        if(ObjectUtil.equal(dto.getFilters().getCategoryId(),"0")){
+        if (ObjectUtil.equal(dto.getFilters().getCategoryId(), "0")) {
             dto.getFilters().setCategoryId(null);
         }
 
@@ -133,7 +148,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
 //        }
 
         //查询分页数据
-        IPage<PageCityInfoDTO> page = productTagMapper.pageQuery(dto.getPageable(), dto.getFilters());
+        IPage<PageCityCareInfoDTO> page = productTagMapper.pageQuery(dto.getPageable(), dto.getFilters());
         //返回分页数据
         return new PageResult<>(page);
 
@@ -141,18 +156,19 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
 
     /**
      * 根据id获取详情
+     *
      * @param id
      * @return
      */
     @Override
-    public CityInfoDTO show(String id) {
-        CityInfoDTO productTagDTO = new CityInfoDTO();
+    public CityCareInfoDTO show(String id) {
+        CityCareInfoDTO productTagDTO = new CityCareInfoDTO();
         //创建查询条件
-        LambdaQueryWrapper<CityInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<CityCareInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
         //设置查询条件
-        queryWrapper.eq(CityInfoEntity::getId, id);
+        queryWrapper.eq(CityCareInfoEntity::getId, id);
         //查询
-        CityInfoEntity productTagEntity = this.getOne(queryWrapper);
+        CityCareInfoEntity productTagEntity = this.getOne(queryWrapper);
         //对象属性拷贝
         BeanUtils.copyProperties(productTagEntity, productTagDTO);
         return productTagDTO;
@@ -167,19 +183,19 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
     @Override
     public void setStatus(String id, Integer status) {
         //创建更新条件
-        LambdaUpdateWrapper<CityInfoEntity> updateWrapper = new LambdaUpdateWrapper<>();
+        LambdaUpdateWrapper<CityCareInfoEntity> updateWrapper = new LambdaUpdateWrapper<>();
         //设置更新条件
-        updateWrapper.eq(CityInfoEntity::getId, id);
-        updateWrapper.set(CityInfoEntity::getStatus, status);
+        updateWrapper.eq(CityCareInfoEntity::getId, id);
+        updateWrapper.set(CityCareInfoEntity::getStatus, status);
         //更新状态
         this.update(updateWrapper);
     }
 
     @Override
-    public List<Tree<String>> treeQuery(TreeQueryDTO<QueryCityInfoDTO> dto) {
+    public List<Tree<String>> treeQuery(TreeQueryDTO<QueryCityCareInfoDTO> dto) {
         //先查询出符合条件的 所有种类 及其 子类 和 父类
-        List<CityInfoEntity> list = this.listQuery(dto.getFilters());
-        List<String> ids = list.stream().map(CityInfoEntity::getId).collect(Collectors.toList());
+        List<CityCareInfoEntity> list = this.listQuery(dto.getFilters());
+        List<String> ids = list.stream().map(CityCareInfoEntity::getId).collect(Collectors.toList());
         List<String> newIds = new ArrayList<>();
         if (CollUtil.isNotEmpty(ids)) {
             for (String id : ids) {
@@ -200,7 +216,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
         }
         //将list转化成树节点列表
         List<TreeNode<String>> nodeList = CollUtil.newArrayList();
-        for (CityInfoEntity item : list) {
+        for (CityCareInfoEntity item : list) {
             TreeNode<String> node = new TreeNode<>(item.getId(), item.getCategoryId(), item.getName(), item.getStatus());
             //设置自定义属性并塞值
             Map<String, Object> extra = new HashMap<>();
@@ -216,10 +232,10 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
         String includeRoot = dto.getFilters().getIncludeRoot();
         List<Tree<String>> trees = new ArrayList<>();
         //
-        if(includeRoot.equals("1")){
+        if (includeRoot.equals("1")) {
             trees = TreeUtil.build(nodeList, "-1");
         }
-        if(includeRoot.equals("0")){
+        if (includeRoot.equals("0")) {
             trees = TreeUtil.build(nodeList, "0");
         }
 
@@ -252,7 +268,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
      * @return
      */
     @Override
-    public OrderDetailsVO getOrderDetails(CityInfoDTO cityInfoDTO) {
+    public OrderDetailsVO getOrderDetails(CityCareInfoDTO cityInfoDTO) {
 
         OrderDetailsVO orderDetailsVO = new OrderDetailsVO();
 
@@ -281,6 +297,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
     public Tree<String> getTree() {
         return this.getTree("1").get(0);
     }
+
     /**
      * 获取树
      *
@@ -289,14 +306,14 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
      */
     public List<Tree<String>> getTree(String includeRoot) {
         //先查询出所有种类
-        List<CityInfoEntity> list = this.list();
+        List<CityCareInfoEntity> list = this.list();
         //如果种类列表为空，直接返回
         if (CollUtil.isEmpty(list)) {
             return CollUtil.newArrayList();
         }
         //将list转化成树节点列表
         List<TreeNode<String>> nodeList = CollUtil.newArrayList();
-        for (CityInfoEntity item : list) {
+        for (CityCareInfoEntity item : list) {
             TreeNode<String> node = new TreeNode<>(item.getId(), item.getCategoryId(), item.getName(), item.getStatus());
             //设置自定义属性并塞值
             Map<String, Object> extra = new HashMap<>();
@@ -311,10 +328,10 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
         //再将符合条件的list转化成树，再返回
         List<Tree<String>> trees = new ArrayList<>();
         //
-        if(includeRoot.equals("1")){
+        if (includeRoot.equals("1")) {
             trees = TreeUtil.build(nodeList, "-1");
         }
-        if(includeRoot.equals("0")){
+        if (includeRoot.equals("0")) {
             trees = TreeUtil.build(nodeList, "0");
         }
 
@@ -323,7 +340,6 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfoEnt
         }
         return trees;
     }
-
 
 
 }
