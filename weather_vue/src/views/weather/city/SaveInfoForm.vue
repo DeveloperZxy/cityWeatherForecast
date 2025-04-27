@@ -4,15 +4,21 @@
       <el-form-item label="名称" prop="name">
         <el-input v-model="formData.name" placeholder="请输入" />
       </el-form-item>
-      <el-form-item label="城市ID" prop="locationId">
+      <el-form-item v-if="title=='编辑'" label="城市ID" prop="locationId">
         <el-input v-model="formData.locationId" placeholder="请输入" />
       </el-form-item>
-      <el-form-item label="位置信息" prop="locationData">
-        <el-input v-model="formData.locationData" placeholder="请输入" />
+      <el-form-item v-if="title=='新增'" label="和风天气对应城市">
+        <el-select v-model="formData.locationId" placeholder="请选择">
+          <el-option
+            v-for="item in cityList"
+            filterable="true"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+          />
+        </el-select>
       </el-form-item>
-      <el-form-item label="警告" prop="warn">
-        <el-input v-model="formData.warn" placeholder="请输入" />
-      </el-form-item>
+
       <!--      <el-form-item label="编码" prop="code">-->
       <!--        <el-input v-model="formData.code" placeholder="请输入"/>-->
       <!--      </el-form-item>-->
@@ -42,7 +48,7 @@
     <template #footer>
       <el-button @click="handleFormCancle">取 消</el-button>
       <el-button @click="getTree">刷新数据</el-button>
-      <el-button type="primary" @click="handleFormSubmit">确 定</el-button>
+      <el-button type="primary" @click="handleFormSubmit(formData.locationId)">确 定</el-button>
     </template>
   </el-dialog>
 </template>
@@ -55,10 +61,11 @@ import {
 } from "@/api/weather/cityInfoApi";
 import * as userTagCategoryApi from "@/api/crm/userTag/userTagCategoryApi";
 
-import { ref, reactive, defineExpose, onMounted } from "vue";
+import {ref, reactive, defineExpose, onMounted, watch} from "vue";
 import { handleTree } from "@/utils/tree";
 import * as userTagInfoApi from "@/api/weather/cityInfoApi";
-
+import {ElMessage} from "element-plus";
+const cityList = ref([]);
 const emit = defineEmits(["success"]);
 
 const title = ref("");
@@ -177,10 +184,48 @@ const handleFormCancle = () => {
   clearFrom();
 };
 
+
+//监视cityData.location的值，一发生变化，就调用getHotCitiesApi
+watch(
+  () => formData.name,
+  async () => {
+    try {
+      const res = await userTagInfoApi.getSearchCityApi({name: formData.name});
+      cityList.value = res.data;
+    } catch (error) {
+      console.error("获取热门城市列表时出错:", error);
+    }
+  }
+);
+
+
 //表单提交方法
-const handleFormSubmit = async () => {
+const handleFormSubmit = async (locationId: any) => {
   if (title.value === "新增") {
-    await getAddApi(formData);
+    console.log("locationId", locationId);
+    if (!locationId) {
+      ElMessage.error("请输入城市名称");
+      return;
+    }
+    //从cityList中筛选出id为locationId的数据
+    const city = cityList.value.find(city => city.id === locationId);
+    console.log("city",city);
+    try {
+      const res = await userTagInfoApi.getAddApi({
+        locationId: locationId,
+        name: city?.name,
+        locationData: city,
+      });
+      if (res.success) {
+        ElMessage.success("添加成功");
+      } else {
+        //TODO 弹出后台返回的报错信息
+        ElMessage.error("不能重复添加！");
+      }
+    } catch (error) {
+      console.error("添加城市时出错:", error);
+    }
+    // await getAddApi(formData);
   } else {
     await getEditApi(formData);
   }

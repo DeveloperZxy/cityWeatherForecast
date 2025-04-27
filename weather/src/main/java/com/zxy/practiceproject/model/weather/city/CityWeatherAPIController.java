@@ -9,6 +9,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.zxy.practiceproject.model.weather.city.pojo.entity.CityEntity;
 import com.zxy.practiceproject.model.weather.city.pojo.entity.DaysWeatherEntity;
 import com.zxy.practiceproject.model.weather.city.pojo.entity.HoursWeatherEntity;
+import com.zxy.practiceproject.model.weather.city.pojo.entity.RealTimeWeatherEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,9 @@ public class CityWeatherAPIController {
     private static final String API_KEY = "425dee2559e7442c9a402f5e3521cfff";
     private static final String HOT_CITIES_API_URL = "https://geoapi.qweather.com/v2/city/top";
     private static final String SEARCH_CITIES_API_URL = "https://geoapi.qweather.com/v2/city/lookup";
-    private static final String WEATHER_24H_API_URL = "https://geoapi.qweather.com/v7/weather/24h";
-    private static final String WEATHER_7DAYS_API_URL = "https://geoapi.qweather.com/v7/weather/7d";
+    private static final String WEATHER_24H_API_URL = "https://ju62b582xg.re.qweatherapi.com/v7/weather/24h";
+    private static final String WEATHER_7DAYS_API_URL = "https://ju62b582xg.re.qweatherapi.com/v7/weather/7d";
+    private static final String REAL_TIME_WEATHER_API_URL = "https://api.qweather.com/v7/weather/now";
     // 替换为你的和风天气API密钥
 
     /**
@@ -31,8 +33,9 @@ public class CityWeatherAPIController {
 
         // 使用Hutool发送GET请求
         HttpResponse response = HttpRequest.get(url).execute();
+        String result = response.body();
         if (response.isOk()) {
-            String result = response.body();
+
             System.out.println("返回结果：" + result);
 
             // 将结果解析为JSONObject
@@ -56,8 +59,9 @@ public class CityWeatherAPIController {
 
 
         HttpResponse response = HttpRequest.get(url).execute();
+        String result = response.body();
         if (response.isOk()) {
-            String result = response.body();
+
             System.out.println("返回结果：" + result);
             // 将结果解析为JSONObject
             JSONObject jsonObject = JSON.parseObject(result);
@@ -79,17 +83,18 @@ public class CityWeatherAPIController {
         String url = WEATHER_24H_API_URL + "?key=" + API_KEY + "&location=" + locationId;
 
         HttpResponse response = HttpRequest.get(url).execute();
+        String result = response.body();
         if (response.isOk()) {
-            String result = response.body();
+
             System.out.println("返回结果：" + result);
-//            // 将结果解析为JSONObject
-//            JSONObject jsonObject = JSON.parseObject(result);
-//            // 提取location数组
-//            JSONArray locationArray = jsonObject.getJSONArray("hourly");
-//            List<HoursWeatherEntity> oneDayWeatherEntities = JSON.parseArray(locationArray.toJSONString(), HoursWeatherEntity.class);
-//            System.out.println("返回结果 oneDayWeatherEntities: " + oneDayWeatherEntities);
-//            return oneDayWeatherEntities;
-            return null;
+            // 将结果解析为JSONObject
+            JSONObject jsonObject = JSON.parseObject(result);
+            // 提取location数组
+            JSONArray locationArray = jsonObject.getJSONArray("hourly");
+            List<HoursWeatherEntity> oneDayWeatherEntities = JSON.parseArray(locationArray.toJSONString(), HoursWeatherEntity.class);
+            System.out.println("返回结果 oneDayWeatherEntities: " + oneDayWeatherEntities);
+            return oneDayWeatherEntities;
+
         }
         return new ArrayList<>();
     }
@@ -102,8 +107,9 @@ public class CityWeatherAPIController {
         String url = WEATHER_7DAYS_API_URL + "?key=" + API_KEY + "&location=" + locationId;
 
         HttpResponse response = HttpRequest.get(url).execute();
+        String result = response.body();
         if (response.isOk()) {
-            String result = response.body();
+
             System.out.println("返回结果：" + result);
             // 将结果解析为JSONObject
             JSONObject jsonObject = JSON.parseObject(result);
@@ -114,6 +120,30 @@ public class CityWeatherAPIController {
             return oneDayWeatherEntities;
         }
         return new ArrayList<>();
+    }
+
+
+    /**
+     * 实时天气
+     */
+    public RealTimeWeatherEntity realTimeWeather(String locationId) {
+        // 查询条件，可以是城市名称或经纬度
+        String url = REAL_TIME_WEATHER_API_URL + API_KEY + "&location=" + locationId;
+
+        HttpResponse response = HttpRequest.get(url).execute();
+        String result = response.body();
+        if (response.isOk()) {
+
+            System.out.println("返回结果：" + result);
+            // 将结果解析为JSONObject
+            JSONObject jsonObject = JSON.parseObject(result);
+            // 提取location数组
+            JSONObject nowWeather = jsonObject.getJSONObject("now");
+            RealTimeWeatherEntity nowDayWeatherEntity = JSON.parseObject(nowWeather.toJSONString(), RealTimeWeatherEntity.class);
+            System.out.println("返回结果 oneDayWeatherEntities: " + nowDayWeatherEntity);
+            return nowDayWeatherEntity;
+        }
+        return null;
     }
 }
 
